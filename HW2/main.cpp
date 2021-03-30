@@ -100,6 +100,8 @@ int main(void)
 {
     adc_thread.start(adc_process);
     display();
+    ThisThread::sleep_for(1s);
+    change_mode(0);
     while(1){
         int mode_temp = mode;
         if (up.read()==1)
@@ -149,8 +151,8 @@ int main(void)
                 }
                 if (up.read()==1 && down.read()==1) {
                     aout=0; 
-                    ThisThread::sleep_for(300ms);
                     release_mode(mode);
+                    ThisThread::sleep_for(300ms);
                     break;
                 }
             }
