@@ -16,11 +16,17 @@ Thread adc_thread;
 int mode=0;
 int n=10;
 void adc_process(){
-    while(1){
-        ADCdata = ain;
-        printf("%f\n", ADCdata);
-        pout = ADCdata;
-        wait_us(100);
+    int i=0;
+    while(1)
+    {
+        if(select_pin==1) i=0;
+        while(i<=1000){
+            ADCdata = ain;
+            printf("%f\n", ADCdata);
+            pout = ADCdata;
+            wait_us(30);
+            i++;
+        }
     }
 }
 
@@ -87,6 +93,7 @@ void select_mode(int mode_in){
     uLCD.locate(0,row_now);
     uLCD.color(RED);
     uLCD.printf(" >"); 
+    // uLCD.rectangle(1,1,2,2, WHITE);
 }
 
 void release_mode(int mode_in){
@@ -98,7 +105,7 @@ void release_mode(int mode_in){
 
 int main(void)
 {
-    adc_thread.start(adc_process);
+    // adc_thread.start(adc_process);
     display();
     ThisThread::sleep_for(1s);
     change_mode(0);
@@ -141,6 +148,7 @@ int main(void)
             //10=1hz, 20=2hz, 100=10hz
             while (1) {
             // cutoff 736Hz
+                adc_thread.start(adc_process);
                 for (float i = 0.0f; i < 0.736f; i += 0.000736f*n) {
                     aout = i; //
                     wait_us(500);
