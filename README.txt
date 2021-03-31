@@ -16,7 +16,7 @@ release_mode() is called when returning to the menu. It turns the pointer WHITE.
 [GENERATING THE WAVEFORM]
 I used two FOR loops to generate the waveform. The signal climbed to the peak with 9 times the speed than going down to the bottom. To change the frequency, the program will change the steps of the FOR loop. To increase the frequency, lower the step, and vise versa.
 The cutoff frequency is about 10Hz. I used a 16k Ohm resistor and 1nF capacitor.
-Once 1000 samples is recorded, the program will stop generating the second DAC signal. However, the initial signal is still produced.
+Once 1000 samples is recorded, the program will stop generating the second DAC signal. However, the initial signal is still produced. To continue generating the second DAC signal, press the select button again.
 
 [SAMPLING]
 The signal is passed through the RC filter and back to ADC port. The program then record the signal strength and generate the same signal from another DAC port. This signal is finally tested with the Picoscope.
